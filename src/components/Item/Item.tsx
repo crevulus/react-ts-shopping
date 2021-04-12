@@ -15,7 +15,7 @@ const Item: React.FC<Props> = ({ item, handleAddToCart }) => (
     <StyledItemInfo>
       <p>{item.title}</p>
       <p>{item.description}</p>
-      <p>${item.price}</p>
+      <p>${item.price.toFixed(2)}</p>
     </StyledItemInfo>
     <Button onClick={() => handleAddToCart(item)}>Add To Cart</Button>
   </StyledItemWrapper>

@@ -1,4 +1,8 @@
-import { StyledCartItemWrapper } from "./CartItem.styles";
+import {
+  StyledCartItemWrapper,
+  StyledSubContainer,
+  StyledImage,
+} from "./CartItem.styles";
 
 import Button from "@material-ui/core/Button";
 
@@ -15,11 +19,11 @@ const CartItem: React.FC<Props> = ({ cartItem, addToCart, removeFromCart }) => (
   <StyledCartItemWrapper>
     <div>
       <p>{cartItem.title}</p>
-      <div>
-        <p>Price: ${cartItem.price}</p>
+      <StyledSubContainer>
+        <p>Price: ${cartItem.price.toFixed(2)}</p>
         <p>Total: ${(cartItem.amount * cartItem.price).toFixed(2)}</p>
-      </div>
-      <div>
+      </StyledSubContainer>
+      <StyledSubContainer>
         <Button
           size="small"
           disableElevation
@@ -37,9 +41,9 @@ const CartItem: React.FC<Props> = ({ cartItem, addToCart, removeFromCart }) => (
         >
           +
         </Button>
-      </div>
+      </StyledSubContainer>
     </div>
-    <img src={cartItem.image} alt={cartItem.title} />
+    <StyledImage src={cartItem.image} alt={cartItem.title} />
   </StyledCartItemWrapper>
 );
 

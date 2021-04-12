@@ -38,9 +38,37 @@ const App = () => {
   const getTotalItems = (items: CartItemType[]) =>
     items.reduce((acc: number, item) => acc + item.amount, 0);
 
-  const handleAddToCart = (clickedItem: CartItemType) => null;
+  const handleAddToCart = (clickedItem: CartItemType) => {
+    setCartItems((prevState) => {
+      // check if item is in cart by looking for id of clicked item in array of cartItems already in state
+      const isItemInCart = prevState.find((item) => item.id === clickedItem.id);
+      if (isItemInCart) {
+        // search for item id matching clicked item; increment that amount
+        return prevState.map((item) =>
+          item.id === clickedItem.id
+            ? { ...item, amount: item.amount + 1 }
+            : item
+        );
+      }
+      return [...prevState, { ...clickedItem, amount: 1 }];
+    });
+  };
 
-  const handleRemoveFromCart = () => null;
+  const handleRemoveFromCart = (clickedId: number) => {
+    setCartItems((prevState) =>
+      // init accumulator as empty array for CartItemType objs. Iterate over prevState carItems.
+      prevState.reduce((acc, item) => {
+        if (item.id === clickedId) {
+          // cartItem id & clicked id match => push item to accumulator with a decremented amount value
+          if (item.amount === 1) return acc;
+          return [...acc, { ...item, amount: item.amount - 1 }];
+        } else {
+          // else just push item to accumulator
+          return [...acc, item];
+        }
+      }, [] as CartItemType[])
+    );
+  };
 
   if (isLoading) return <LinearProgress />;
   if (error) return <div>Something went wrong</div>;
