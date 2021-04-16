@@ -7,11 +7,19 @@ import { StyledItemWrapper, StyledItemInfo } from "./Item.styles";
 type Props = {
   item: CartItemType;
   handleAddToCart: (clickedItem: CartItemType) => void;
+  clickItem: (clickedItem: CartItemType) => void;
 };
 
-const Item: React.FC<Props> = ({ item, handleAddToCart }) => (
-  <StyledItemWrapper>
-    <img src={item.image} alt={item.title} />
+const Item: React.FC<Props> = ({ item, handleAddToCart, clickItem }) => (
+  <StyledItemWrapper
+    className={item.animation}
+    onClick={() => {
+      clickItem(item);
+    }}
+  >
+    <picture>
+      <img src={item.image} alt={item.title} />
+    </picture>
     <StyledItemInfo>
       <p>{item.title}</p>
       <p>{item.description}</p>

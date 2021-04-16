@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery } from "react-query";
 
 import Item from "./components/Item/Item";
@@ -20,20 +20,29 @@ export type CartItemType = {
   price: number;
   title: string;
   amount: number;
+  animation?: string;
 };
 
 const getProducts = async (): Promise<CartItemType[]> => {
-  return await (await fetch("https://fakestoreapi.com/products")).json();
+  const products = await fetch("https://fakestoreapi.com/products")
+    .then((data) => data.json())
+    .then((array) =>
+      array.map((obj: CartItemType) => ({ ...obj, animation: "item" }))
+    );
+  return await products;
 };
 
 const App = () => {
+  const [items, setItems] = useState([] as CartItemType[]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState([] as CartItemType[]);
-  const { data, isLoading, error } = useQuery<CartItemType[]>(
+  const { isLoading, error } = useQuery<CartItemType[]>(
     "products",
-    getProducts
+    getProducts,
+    { onSuccess: setItems }
   );
-  console.log(data);
+
+  useEffect(() => console.log("reload"));
 
   const getTotalItems = (items: CartItemType[]) =>
     items.reduce((acc: number, item) => acc + item.amount, 0);
@@ -70,6 +79,13 @@ const App = () => {
     );
   };
 
+  const clickItem = (item: CartItemType) => {
+    let tempItems = [...items];
+    // @ts-ignore
+    tempItems[item.id - 1].animation = "item animate__animated animate__pulse";
+    setItems(tempItems!);
+  };
+
   if (isLoading) return <LinearProgress />;
   if (error) return <div>Something went wrong</div>;
 
@@ -93,9 +109,13 @@ const App = () => {
           </Badge>
         </StyledCartButton>
         <Grid container spacing={3}>
-          {data?.map((item: CartItemType) => (
+          {items?.map((item: CartItemType) => (
             <Grid item key={item.id} xs={12} sm={4}>
-              <Item item={item} handleAddToCart={handleAddToCart} />
+              <Item
+                item={item}
+                handleAddToCart={handleAddToCart}
+                clickItem={clickItem}
+              />
             </Grid>
           ))}
         </Grid>

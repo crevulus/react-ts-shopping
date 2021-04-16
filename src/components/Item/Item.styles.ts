@@ -4,20 +4,35 @@ export const StyledItemWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  width: 100%;
-  height: 100%;
+  position: relative;
   border: 1px solid lightblue;
   border-radius: 20px;
+  &::before {
+    display: block;
+    padding-bottom: 100%;
+    content: "";
+  }
+  picture {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-height: 50%;
+    img {
+      border-radius: 20px 20px 0 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
   button {
     border-radius: 0 0 20px 20px;
   }
-
-  img {
-    max-height: 250px;
-    object-fit: cover;
-    border-radius: 20px 20px 0 0;
-  }
 `;
+
+export const StyledItemImage = styled.img``;
 
 export const StyledItemInfo = styled.div`
   font-family: Arial, Helvetica, sans-serif;
