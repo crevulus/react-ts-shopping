@@ -4,11 +4,20 @@ export const StyledItemWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  position: relative;
   border: 1px solid lightblue;
   border-radius: 20px;
+
+  button {
+    border-radius: 0 0 20px 20px;
+  }
+`;
+
+export const StyledVisualWrapper = styled.div`
+  position: relative;
+  max-height: 50%;
   &::before {
     display: block;
+    overflow: hidden;
     padding-bottom: 100%;
     content: "";
   }
@@ -18,7 +27,6 @@ export const StyledItemWrapper = styled.div`
     bottom: 0;
     left: 0;
     right: 0;
-    max-height: 50%;
     img {
       border-radius: 20px 20px 0 0;
       width: 100%;
@@ -26,13 +34,7 @@ export const StyledItemWrapper = styled.div`
       object-fit: contain;
     }
   }
-
-  button {
-    border-radius: 0 0 20px 20px;
-  }
 `;
-
-export const StyledItemImage = styled.img``;
 
 export const StyledItemInfo = styled.div`
   font-family: Arial, Helvetica, sans-serif;

@@ -2,24 +2,33 @@ import { CartItemType } from "../../App";
 
 import Button from "@material-ui/core/Button";
 
-import { StyledItemWrapper, StyledItemInfo } from "./Item.styles";
+import {
+  StyledItemWrapper,
+  StyledItemInfo,
+  StyledVisualWrapper,
+} from "./Item.styles";
 
 type Props = {
   item: CartItemType;
   handleAddToCart: (clickedItem: CartItemType) => void;
-  clickItem: (clickedItem: CartItemType) => void;
+  clickItem: (
+    clickedItem: CartItemType,
+    e: React.MouseEvent<HTMLDivElement>
+  ) => void;
 };
 
 const Item: React.FC<Props> = ({ item, handleAddToCart, clickItem }) => (
   <StyledItemWrapper
     className={item.animation}
-    onClick={() => {
-      clickItem(item);
+    onClick={(e) => {
+      clickItem(item, e);
     }}
   >
-    <picture>
-      <img src={item.image} alt={item.title} />
-    </picture>
+    <StyledVisualWrapper>
+      <picture>
+        <img src={item.image} alt={item.title} />
+      </picture>
+    </StyledVisualWrapper>
     <StyledItemInfo>
       <p>{item.title}</p>
       <p>{item.description}</p>

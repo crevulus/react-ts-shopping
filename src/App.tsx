@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useQuery } from "react-query";
 
 import Item from "./components/Item/Item";
@@ -42,8 +42,6 @@ const App = () => {
     { onSuccess: setItems }
   );
 
-  useEffect(() => console.log("reload"));
-
   const getTotalItems = (items: CartItemType[]) =>
     items.reduce((acc: number, item) => acc + item.amount, 0);
 
@@ -79,10 +77,15 @@ const App = () => {
     );
   };
 
-  const clickItem = (item: CartItemType) => {
+  const clickItem = (
+    item: CartItemType,
+    e: React.MouseEvent<HTMLDivElement>
+  ) => {
+    console.log(e);
     let tempItems = [...items];
+    const target = tempItems[item.id - 1];
     // @ts-ignore
-    tempItems[item.id - 1].animation = "item animate__animated animate__pulse";
+    target.animation = "item animate__animated animate__pulse";
     setItems(tempItems!);
   };
 
