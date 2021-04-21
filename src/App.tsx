@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+
 import { useQuery } from "react-query";
+import { TimelineLite } from "gsap";
 
 import Item from "./components/Item/Item";
 import Cart from "./components/Cart/Cart";
@@ -47,6 +49,7 @@ export const clickItem = (
 };
 
 const App = () => {
+  let itemRef = useRef([]);
   const [items, setItems] = useState([] as CartItemType[]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState([] as CartItemType[]);
@@ -55,6 +58,15 @@ const App = () => {
     getProducts,
     { onSuccess: setItems }
   );
+
+  useEffect(() => {
+    console.log(itemRef);
+    const timeline = new TimelineLite();
+    timeline.from(itemRef.current, {
+      autoAlpha: 0,
+      stagger: 0.5,
+    });
+  });
 
   const getTotalItems = (items: CartItemType[]) =>
     items.reduce((acc: number, item) => acc + item.amount, 0);
@@ -121,8 +133,18 @@ const App = () => {
           </Badge>
         </StyledCartButton>
         <Grid container spacing={3}>
-          {items?.map((item: CartItemType) => (
-            <Grid item key={item.id} xs={12} sm={4}>
+          {items?.map((item: CartItemType, i: number) => (
+            <Grid
+              item
+              key={item.id}
+              xs={12}
+              sm={4}
+              // @ts-ignore
+              ref={(element: HTMLDivElement) => {
+                // @ts-ignore
+                itemRef.current[i] = element;
+              }}
+            >
               <Item
                 item={item}
                 handleAddToCart={handleAddToCart}
