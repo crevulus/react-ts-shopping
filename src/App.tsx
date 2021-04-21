@@ -32,6 +32,20 @@ const getProducts = async (): Promise<CartItemType[]> => {
   return await products;
 };
 
+export const clickItem = (
+  items: CartItemType[],
+  setItems: (items: CartItemType[]) => void,
+  item: CartItemType,
+  e: React.MouseEvent<HTMLDivElement>
+) => {
+  console.log(e);
+  let tempItems = [...items];
+  const target = tempItems[item.id - 1];
+  // @ts-ignore
+  target.animation = "item animate__animated animate__pulse";
+  setItems(tempItems!);
+};
+
 const App = () => {
   const [items, setItems] = useState([] as CartItemType[]);
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -77,16 +91,11 @@ const App = () => {
     );
   };
 
-  const clickItem = (
+  const handleClickItem = (
     item: CartItemType,
     e: React.MouseEvent<HTMLDivElement>
   ) => {
-    console.log(e);
-    let tempItems = [...items];
-    const target = tempItems[item.id - 1];
-    // @ts-ignore
-    target.animation = "item animate__animated animate__pulse";
-    setItems(tempItems!);
+    clickItem(items, setItems, item, e);
   };
 
   if (isLoading) return <LinearProgress />;
@@ -117,7 +126,7 @@ const App = () => {
               <Item
                 item={item}
                 handleAddToCart={handleAddToCart}
-                clickItem={clickItem}
+                clickItem={handleClickItem}
               />
             </Grid>
           ))}

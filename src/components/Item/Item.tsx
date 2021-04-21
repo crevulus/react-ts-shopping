@@ -8,7 +8,7 @@ import {
   StyledVisualWrapper,
 } from "./Item.styles";
 
-type Props = {
+export type ItemProps = {
   item: CartItemType;
   handleAddToCart: (clickedItem: CartItemType) => void;
   clickItem: (
@@ -17,7 +17,7 @@ type Props = {
   ) => void;
 };
 
-const Item: React.FC<Props> = ({ item, handleAddToCart, clickItem }) => (
+const Item: React.FC<ItemProps> = ({ item, handleAddToCart, clickItem }) => (
   <StyledItemWrapper
     className={item.animation}
     onClick={(e) => {
