@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 
 import { useQuery } from "react-query";
-import { TimelineLite } from "gsap";
+import gsap from "gsap";
 
 import Item from "./components/Item/Item";
 import Cart from "./components/Cart/Cart";
@@ -53,20 +53,19 @@ const App = () => {
   const [items, setItems] = useState([] as CartItemType[]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState([] as CartItemType[]);
-  const { isLoading, error } = useQuery<CartItemType[]>(
+  const { data, isLoading, error } = useQuery<CartItemType[]>(
     "products",
     getProducts,
     { onSuccess: setItems }
   );
 
   useEffect(() => {
-    console.log(itemRef);
-    const timeline = new TimelineLite();
-    timeline.from(itemRef.current, {
+    // gsap.ticker.lagSmoothing(0);
+    gsap.from(itemRef.current, {
       autoAlpha: 0,
       stagger: 0.5,
     });
-  });
+  }, [data]);
 
   const getTotalItems = (items: CartItemType[]) =>
     items.reduce((acc: number, item) => acc + item.amount, 0);

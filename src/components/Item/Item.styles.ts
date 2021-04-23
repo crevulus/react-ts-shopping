@@ -6,6 +6,7 @@ export const StyledItemWrapper = styled.div`
   flex-direction: column;
   border: 1px solid lightblue;
   border-radius: 20px;
+  background: linear-gradient(-225deg, aquamarine, lightblue, blue) fixed;
 
   button {
     border-radius: 0 0 20px 20px;
@@ -40,4 +41,5 @@ export const StyledItemInfo = styled.div`
   font-family: Arial, Helvetica, sans-serif;
   padding: 1rem;
   height: 100%;
+  overflow: hidden;
 `;
