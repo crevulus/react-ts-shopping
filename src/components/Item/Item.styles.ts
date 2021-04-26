@@ -6,7 +6,7 @@ export const StyledItemWrapper = styled.div`
   flex-direction: column;
   border: 1px solid lightblue;
   border-radius: 20px;
-  background: linear-gradient(-225deg, aquamarine, lightblue, blue) fixed;
+  background: linear-gradient(-225deg, aquamarine, lightblue 40%, blue) fixed;
 
   button {
     border-radius: 0 0 20px 20px;

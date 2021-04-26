@@ -1,18 +1,17 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, Suspense, lazy } from "react";
 
 import { useQuery } from "react-query";
-import gsap from "gsap";
 
-import Item from "./components/Item/Item";
 import Cart from "./components/Cart/Cart";
 
 import Drawer from "@material-ui/core/Drawer";
 import LinearProgress from "@material-ui/core/LinearProgress";
-import Grid from "@material-ui/core/Grid";
 import Badge from "@material-ui/core/Badge";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 
 import { StyledAppWrapper, StyledCartButton } from "./App.styles";
+
+const ItemGrid = lazy(() => import("./components/ItemGrid/ItemGrid"));
 
 export type CartItemType = {
   id: number;
@@ -49,7 +48,6 @@ export const clickItem = (
 };
 
 const App = () => {
-  let itemRef = useRef([]);
   const [items, setItems] = useState([] as CartItemType[]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState([] as CartItemType[]);
@@ -58,14 +56,6 @@ const App = () => {
     getProducts,
     { onSuccess: setItems }
   );
-
-  useEffect(() => {
-    // gsap.ticker.lagSmoothing(0);
-    gsap.from(itemRef.current, {
-      autoAlpha: 0,
-      stagger: 0.5,
-    });
-  }, [data]);
 
   const getTotalItems = (items: CartItemType[]) =>
     items.reduce((acc: number, item) => acc + item.amount, 0);
@@ -109,7 +99,6 @@ const App = () => {
     clickItem(items, setItems, item, e);
   };
 
-  if (isLoading) return <LinearProgress />;
   if (error) return <div>Something went wrong</div>;
 
   return (
@@ -131,27 +120,14 @@ const App = () => {
             <AddShoppingCartIcon />
           </Badge>
         </StyledCartButton>
-        <Grid container spacing={3}>
-          {items?.map((item: CartItemType, i: number) => (
-            <Grid
-              item
-              key={item.id}
-              xs={12}
-              sm={4}
-              // @ts-ignore
-              ref={(element: HTMLDivElement) => {
-                // @ts-ignore
-                itemRef.current[i] = element;
-              }}
-            >
-              <Item
-                item={item}
-                handleAddToCart={handleAddToCart}
-                clickItem={handleClickItem}
-              />
-            </Grid>
-          ))}
-        </Grid>
+        <Suspense fallback={<LinearProgress />}>
+          <ItemGrid
+            items={items}
+            data={data}
+            handleClickItem={handleClickItem}
+            handleAddToCart={handleAddToCart}
+          />
+        </Suspense>
       </StyledAppWrapper>
     </div>
   );

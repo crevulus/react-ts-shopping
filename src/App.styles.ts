@@ -6,8 +6,5 @@ export const StyledAppWrapper = styled.div`
 `;
 
 export const StyledCartButton = styled(IconButton)`
-  position: fixed;
-  z-index: 100;
-  top: 20px;
-  right: 20px;
+  float: right;
 `;
