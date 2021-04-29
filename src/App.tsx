@@ -10,6 +10,8 @@ import Badge from "@material-ui/core/Badge";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 
 import { StyledAppWrapper, StyledCartButton } from "./App.styles";
+import CheckboxRadio from "./components/CheckboxRadio/CheckboxRadio";
+import Input from "./components/Input/Input";
 
 const ItemGrid = lazy(() => import("./components/ItemGrid/ItemGrid"));
 
@@ -120,6 +122,8 @@ const App = () => {
             <AddShoppingCartIcon />
           </Badge>
         </StyledCartButton>
+        <Input />
+        <CheckboxRadio />
         <Suspense fallback={<LinearProgress />}>
           <ItemGrid
             items={items}

@@ -28,7 +28,7 @@ export default function ItemGrid({
   useEffect(() => {
     gsap.from(itemRef.current, {
       autoAlpha: 0,
-      stagger: 0.5,
+      stagger: 0.1,
     });
   }, [data]);
 
