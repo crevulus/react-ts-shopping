@@ -46,18 +46,16 @@ export const clickItem = (
   const target = tempItems[item.id - 1];
   // @ts-ignore
   target.animation = "item animate__animated animate__pulse";
-  setItems(tempItems!);
+  setItems(tempItems);
 };
 
 const App = () => {
   const [items, setItems] = useState([] as CartItemType[]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState([] as CartItemType[]);
-  const { data, isLoading, error } = useQuery<CartItemType[]>(
-    "products",
-    getProducts,
-    { onSuccess: setItems }
-  );
+  const { data, error } = useQuery<CartItemType[]>("products", getProducts, {
+    onSuccess: setItems,
+  });
 
   const getTotalItems = (items: CartItemType[]) =>
     items.reduce((acc: number, item) => acc + item.amount, 0);

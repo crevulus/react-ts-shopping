@@ -1,11 +1,12 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, lazy, Suspense } from "react";
 
 import gsap from "gsap";
 
 import Grid from "@material-ui/core/Grid";
-import Item from "../Item/Item";
 
 import { CartItemType } from "../../App";
+import ErrorBoundary from "../../utils/ErrorBoundary";
+const Item = lazy(() => import("../Item/Item"));
 
 export type ItemGridProps = {
   items: CartItemType[];
@@ -35,23 +36,26 @@ export default function ItemGrid({
   return (
     <Grid container spacing={3}>
       {items?.map((item: CartItemType, i: number) => (
-        <Grid
-          item
-          key={item.id}
-          xs={12}
-          sm={4}
-          // @ts-ignore
-          ref={(element: HTMLDivElement) => {
-            // @ts-ignore
-            itemRef.current[i] = element;
-          }}
-        >
-          <Item
-            item={item}
-            handleAddToCart={handleAddToCart}
-            clickItem={handleClickItem}
-          />
-        </Grid>
+        <ErrorBoundary fallback="Couldn't load the item">
+          <Suspense key={item.id} fallback="Loading item...">
+            <Grid
+              item
+              xs={12}
+              sm={4}
+              // @ts-ignore
+              ref={(element: HTMLDivElement) => {
+                // @ts-ignore
+                itemRef.current[i] = element;
+              }}
+            >
+              <Item
+                item={item}
+                handleAddToCart={handleAddToCart}
+                clickItem={handleClickItem}
+              />
+            </Grid>
+          </Suspense>
+        </ErrorBoundary>
       ))}
     </Grid>
   );
