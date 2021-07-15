@@ -12,6 +12,21 @@ import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import { StyledAppWrapper, StyledCartButton } from "./App.styles";
 import CheckboxRadio from "./components/CheckboxRadio/CheckboxRadio";
 import Input from "./components/Input/Input";
+import { Canvas } from "./components/Canvas/Canvas";
+
+type CameraType = {
+  position: Array<number>;
+  fov: number;
+};
+
+declare module "react" {
+  interface HTMLCanvasElement<T> {
+    colorManagement?: boolean;
+    shadow?: boolean;
+    shadowMap?: boolean;
+    camera?: CameraType;
+  }
+}
 
 const ItemGrid = lazy(() => import("./components/ItemGrid/ItemGrid"));
 
@@ -41,7 +56,6 @@ export const clickItem = (
   item: CartItemType,
   e: React.MouseEvent<HTMLDivElement>
 ) => {
-  console.log(e);
   let tempItems = [...items];
   const target = tempItems[item.id - 1];
   // @ts-ignore
@@ -122,6 +136,7 @@ const App = () => {
         </StyledCartButton>
         <Input />
         <CheckboxRadio />
+        <Canvas />
         <Suspense fallback={<LinearProgress />}>
           <ItemGrid
             items={items}

@@ -4,8 +4,11 @@ export const StyledCartItemWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   font-family: Arial, Helvetica, sans-serif;
-  border-bottom: 1px solid lightblue;
-  padding-bottom: 20px;
+  margin-bottom: 1rem;
+  padding: 2rem;
+  border-radius: 10px;
+  background: #ffffff;
+  box-shadow: inset -20px 20px 60px #d9d9d9, inset 20px -20px 60px #ffffff;
   div {
     flex: 1;
   }

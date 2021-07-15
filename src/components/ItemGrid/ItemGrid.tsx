@@ -36,8 +36,8 @@ export default function ItemGrid({
   return (
     <Grid container spacing={3}>
       {items?.map((item: CartItemType, i: number) => (
-        <ErrorBoundary fallback="Couldn't load the item">
-          <Suspense key={item.id} fallback="Loading item...">
+        <ErrorBoundary key={item.id} fallback="Couldn't load the item">
+          <Suspense fallback="Loading item...">
             <Grid
               item
               xs={12}

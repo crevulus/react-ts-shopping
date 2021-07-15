@@ -6,7 +6,12 @@ export const StyledItemWrapper = styled.div`
   flex-direction: column;
   border: 1px solid lightblue;
   border-radius: 20px;
-  background: linear-gradient(-225deg, aquamarine, lightblue 40%, blue) fixed;
+  background: linear-gradient(
+      -225deg,
+      rgba(255, 255, 255, 0.5) 40%,
+      rgba(255, 0, 0, 0.5)
+    )
+    fixed;
 
   button {
     border-radius: 0 0 20px 20px;
@@ -16,6 +21,7 @@ export const StyledItemWrapper = styled.div`
 export const StyledVisualWrapper = styled.div`
   position: relative;
   max-height: 50%;
+
   &::before {
     display: block;
     overflow: hidden;
