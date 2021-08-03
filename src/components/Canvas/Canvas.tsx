@@ -1,7 +1,6 @@
 //@ts-nocheck
-import React, { Suspense } from "react";
+import React from "react";
 import { FloorPlane, Box } from "../BoxShadow/BoxShadow";
-import Model from "../Model/Model";
 import { StyledCanvas } from "./Canvas.styles";
 
 export const Canvas = () => {

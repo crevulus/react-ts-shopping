@@ -20,7 +20,7 @@ type CameraType = {
 };
 
 declare module "react" {
-  interface HTMLCanvasElement<T> {
+  interface HTMLCanvasElement {
     colorManagement?: boolean;
     shadow?: boolean;
     shadowMap?: boolean;
