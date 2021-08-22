@@ -53,8 +53,7 @@ const getProducts = async (): Promise<CartItemType[]> => {
 export const clickItem = (
   items: CartItemType[],
   setItems: (items: CartItemType[]) => void,
-  item: CartItemType,
-  e: React.MouseEvent<HTMLDivElement>
+  item: CartItemType
 ) => {
   let tempItems = [...items];
   const target = tempItems[item.id - 1];
@@ -110,7 +109,7 @@ const App = () => {
     item: CartItemType,
     e: React.MouseEvent<HTMLDivElement>
   ) => {
-    clickItem(items, setItems, item, e);
+    clickItem(items, setItems, item);
   };
 
   if (error) return <div>Something went wrong</div>;
