@@ -1,4 +1,4 @@
-import { useState, Suspense, lazy } from "react";
+import { useState, Suspense, lazy, useCallback } from "react";
 
 import { useQuery } from "react-query";
 
@@ -73,7 +73,7 @@ const App = () => {
   const getTotalItems = (items: CartItemType[]) =>
     items.reduce((acc: number, item) => acc + item.amount, 0);
 
-  const handleAddToCart = (clickedItem: CartItemType) => {
+  const handleAddToCart = useCallback((clickedItem: CartItemType) => {
     setCartItems((prevState) => {
       // check if item is in cart by looking for id of clicked item in array of cartItems already in state
       const isItemInCart = prevState.find((item) => item.id === clickedItem.id);
@@ -87,7 +87,7 @@ const App = () => {
       }
       return [...prevState, { ...clickedItem, amount: 1 }];
     });
-  };
+  }, []);
 
   const handleRemoveFromCart = (clickedId: number) => {
     setCartItems((prevState) =>
@@ -105,12 +105,12 @@ const App = () => {
     );
   };
 
-  const handleClickItem = (
-    item: CartItemType,
-    e: React.MouseEvent<HTMLDivElement>
-  ) => {
-    clickItem(items, setItems, item);
-  };
+  const handleClickItem = useCallback(
+    (item: CartItemType, e: React.MouseEvent<HTMLDivElement>) => {
+      clickItem(items, setItems, item);
+    },
+    [items]
+  );
 
   if (error) return <div>Something went wrong</div>;
 

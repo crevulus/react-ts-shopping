@@ -18,7 +18,7 @@ export type ItemGridProps = {
   ) => void;
 };
 
-export default function ItemGrid({
+function ItemGrid({
   items,
   data,
   handleClickItem,
@@ -60,3 +60,5 @@ export default function ItemGrid({
     </Grid>
   );
 }
+
+export default React.memo(ItemGrid);

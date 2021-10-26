@@ -1,4 +1,4 @@
-import { MutableRefObject, useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import gsap from "gsap/all";
 
 import { CartItemType } from "../../App";
@@ -22,18 +22,18 @@ export type ItemProps = {
 
 const Item: React.FC<ItemProps> = ({ item, handleAddToCart, clickItem }) => {
   const itemRef = useRef<HTMLDivElement>(null);
-  const tl = useRef<any>(null);
+  const tween = useRef<any>(null);
 
   useEffect(() => {
-    tl.current = gsap.to(itemRef.current, { scale: 1.05, paused: true });
+    tween.current = gsap.to(itemRef.current, { scale: 1.05, paused: true });
   }, []);
 
   const onEnter = () => {
-    tl.current.play();
+    tween.current.play();
   };
 
   const onLeave = () => {
-    tl.current.reverse();
+    tween.current.reverse();
   };
 
   return (
