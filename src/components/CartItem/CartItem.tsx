@@ -10,8 +10,8 @@ import { CartItemType } from "../../App";
 
 type Props = {
   cartItem: CartItemType;
-  addToCart: (clickedItem: CartItemType) => void;
-  removeFromCart: (id: number) => void;
+  addToCart?: (clickedItem: CartItemType) => void;
+  removeFromCart?: (id: number) => void;
 };
 
 const CartItem: React.FC<Props> = ({ cartItem, addToCart, removeFromCart }) => (
@@ -27,7 +27,7 @@ const CartItem: React.FC<Props> = ({ cartItem, addToCart, removeFromCart }) => (
           size="small"
           disableElevation
           variant="contained"
-          onClick={() => removeFromCart(cartItem.id)}
+          onClick={() => removeFromCart && removeFromCart(cartItem.id)}
         >
           -
         </Button>
@@ -36,7 +36,7 @@ const CartItem: React.FC<Props> = ({ cartItem, addToCart, removeFromCart }) => (
           size="small"
           disableElevation
           variant="contained"
-          onClick={() => addToCart(cartItem)}
+          onClick={() => addToCart && addToCart(cartItem)}
         >
           +
         </Button>
