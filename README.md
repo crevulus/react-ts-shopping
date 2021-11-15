@@ -1,4 +1,4 @@
-[![Node.js CI](https://github.com/crevulus/react-ts-shopping/actions/workflows/react-test.yml/badge.svg)](https://github.com/crevulus/react-ts-shopping/actions/workflows/react-test.yml)
+[![main](https://github.com/crevulus/react-ts-shopping/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/crevulus/react-ts-shopping/actions/workflows/main.yml) [![develop](https://github.com/crevulus/react-ts-shopping/actions/workflows/main.yml/badge.svg?branch=develop)](https://github.com/crevulus/react-ts-shopping/actions/workflows/main.yml)
 
 # Getting Started with Create React App
 
