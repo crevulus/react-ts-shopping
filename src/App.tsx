@@ -112,7 +112,7 @@ const App = () => {
     [items]
   );
 
-  if (error) return <div>Something went wrong</div>;
+  if (error) return <div>Something went wrong!</div>;
 
   return (
     <div className="App">
