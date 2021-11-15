@@ -17,6 +17,6 @@ const mockData = {
 
 it("should render a cart item", () => {
   render(<CartItem cartItem={mockData} />);
-  const element = screen.getByRole("button", { name: "+" });
+  const element = screen.getByRole("button", { name: "=" });
   expect(element).toBeInTheDocument();
 });
