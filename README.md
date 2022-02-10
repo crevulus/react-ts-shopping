@@ -1,3 +1,5 @@
+[![main](https://github.com/crevulus/react-ts-shopping/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/crevulus/react-ts-shopping/actions/workflows/main.yml) [![develop](https://github.com/crevulus/react-ts-shopping/actions/workflows/main.yml/badge.svg?branch=develop)](https://github.com/crevulus/react-ts-shopping/actions/workflows/main.yml)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
