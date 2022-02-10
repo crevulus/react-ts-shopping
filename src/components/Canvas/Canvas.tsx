@@ -17,8 +17,8 @@ export const Canvas = () => {
       {/* <Suspense fallback={null}>
         <Model modelPath="/ceramic_teapot/scene.gltf" />
       </Suspense> */}
-      <Box position={[-1.2, 0, 0]} direction="left" />
-      <Box position={[1.2, 0, 0]} direction="right" />
+      <Box position={[-1.4, 0, 0]} direction="left" />
+      <Box position={[1.4, 0, 0]} direction="right" />
     </StyledCanvas>
   );
 };

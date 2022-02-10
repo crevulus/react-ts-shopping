@@ -1,4 +1,4 @@
-import { CartItemType } from "../../App";
+import { CartItemType } from "../../views/Home";
 
 import CartItem from "../CartItem/CartItem";
 
