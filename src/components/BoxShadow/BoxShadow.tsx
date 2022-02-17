@@ -1,10 +1,16 @@
 //@ts-nocheck
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 
 import { ContactShadows, softShadows } from "@react-three/drei";
 
 export function Box(props) {
+  const [scale, setScale] = useState(1);
+
+  const handleClickBox = () => {
+    setScale(scale + 0.1);
+  };
+
   // This reference will give us direct access to the THREE.Mesh object
   const mesh = useRef();
   // Subscribe this component to the render-loop, rotate the mesh every frame
@@ -17,7 +23,13 @@ export function Box(props) {
   });
   // Return the view, these are regular Threejs elements expressed in JSX
   return (
-    <mesh {...props} castShadow ref={mesh} scale={1}>
+    <mesh
+      {...props}
+      castShadow
+      ref={mesh}
+      scale={scale}
+      onClick={handleClickBox}
+    >
       <boxGeometry args={[1, 1, 1]} />
       <meshStandardMaterial color="orange" />
     </mesh>

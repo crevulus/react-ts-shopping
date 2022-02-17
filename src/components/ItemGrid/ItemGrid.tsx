@@ -4,7 +4,7 @@ import gsap from "gsap";
 
 import Grid from "@material-ui/core/Grid";
 
-import { CartItemType } from "../../App";
+import { CartItemType } from "../../views/Home";
 import ErrorBoundary from "../../utils/ErrorBoundary";
 const Item = lazy(() => import("../Item/Item"));
 
@@ -29,7 +29,7 @@ function ItemGrid({
   useEffect(() => {
     gsap.from(itemRef.current, {
       autoAlpha: 0,
-      stagger: 0.1,
+      stagger: 0.2,
     });
   }, [data]);
 

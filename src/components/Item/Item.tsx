@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
 import gsap from "gsap/all";
 
-import { CartItemType } from "../../App";
+import { CartItemType } from "../../views/Home";
 
 import Button from "@material-ui/core/Button";
 
