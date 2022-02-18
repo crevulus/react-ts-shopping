@@ -46,7 +46,12 @@ const getProducts = async (): Promise<CartItemType[]> => {
     .then((data) => data.json())
     .then((array) =>
       array.map((obj: CartItemType) => ({ ...obj, animation: "item" }))
-    );
+    )
+    .catch((err) => {
+      console.error(
+        "this is another test for logrocket, this time with console.error in getProducts"
+      );
+    });
   return await products;
 };
 
