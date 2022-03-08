@@ -11,11 +11,19 @@ type ButtonProps = {
 };
 
 export default function Buttons({ handleClick }: ButtonProps) {
+  const throwError = () => {
+    throw new Error("This is a test error for logrocket");
+  };
+  const throwThirdError = () => {
+    console.error(
+      "this is a third test for logrocket, this time with console.error in Buttons"
+    );
+  };
   return (
     <>
       <StyledSlideButton onClick={handleClick}>Copy</StyledSlideButton>
-      <StyledDropButton>No fn</StyledDropButton>
-      <StyledGrowButton>No fn</StyledGrowButton>
+      <StyledDropButton onClick={throwError}>No fn</StyledDropButton>
+      <StyledGrowButton onClick={throwThirdError}>No fn</StyledGrowButton>
       <ul style={{ listStyleType: "none", display: "flex" }}>
         <li style={{ overflow: "hidden" }}>
           <StyledLink>Test</StyledLink>

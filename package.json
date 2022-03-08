@@ -42,7 +42,8 @@
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
+      "react-app/jest",
+      "plugin:cypress/recommended"
     ],
     "overrides": [
       {
@@ -74,6 +75,8 @@
     "@storybook/node-logger": "^6.2.8",
     "@storybook/preset-create-react-app": "^3.1.7",
     "@storybook/react": "^6.2.8",
+    "cypress": "^9.5.1",
+    "eslint-plugin-cypress": "^2.12.1",
     "plop": "^3.0.5"
   }
 }
