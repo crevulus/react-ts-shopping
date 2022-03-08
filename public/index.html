@@ -40,11 +40,26 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   <script src="https://cdn.lr-in.com/LogRocket.min.js" crossorigin="anonymous"></script>
-  <script>window.LogRocket && window.LogRocket.init('1kaxpu/react-ts-shopping', {
-      console: {
-        shouldAggregateConsoleErrors: true,
-      },
-    });</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NDE52VWP0E"></script>
+  <script>
+    window.addEventListener('storage', () => {
+      console.log("change to local storage!");
+      if (window.localStorage.getItem("allowCookies")) {
+        if (window.LogRocket) {
+          window.LogRocket.init('1kaxpu/react-ts-shopping', {
+            console: {
+              shouldAggregateConsoleErrors: true,
+            },
+          });
+        }
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        window.gtag = gtag;
+        gtag('js', new Date());
+        gtag('config', 'G-NDE52VWP0E');
+      }
+    })
+  </script>
 </body>
 
 </html>

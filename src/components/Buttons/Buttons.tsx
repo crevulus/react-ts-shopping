@@ -1,4 +1,5 @@
 import React from "react";
+import { trackEvent } from "../../utils/track";
 import {
   StyledDropButton,
   StyledGrowButton,
@@ -19,11 +20,29 @@ export default function Buttons({ handleClick }: ButtonProps) {
       "this is a third test for logrocket, this time with console.error in Buttons"
     );
   };
+
+  const handleLocalStorage = () => {
+    window.localStorage.setItem("allowCookies", "true");
+    window.dispatchEvent(new Event("storage"));
+
+    trackEvent(
+      {
+        id: "local-storage",
+      },
+      { type: "click" }
+    );
+  };
+
   return (
     <>
       <StyledSlideButton onClick={handleClick}>Copy</StyledSlideButton>
-      <StyledDropButton onClick={throwError}>No fn</StyledDropButton>
-      <StyledGrowButton onClick={throwThirdError}>No fn</StyledGrowButton>
+      <StyledDropButton onClick={throwError}>Throw error</StyledDropButton>
+      <StyledGrowButton onClick={throwThirdError}>
+        Console error
+      </StyledGrowButton>
+      <StyledGrowButton onClick={handleLocalStorage}>
+        Local Storage
+      </StyledGrowButton>
       <ul style={{ listStyleType: "none", display: "flex" }}>
         <li style={{ overflow: "hidden" }}>
           <StyledLink>Test</StyledLink>
