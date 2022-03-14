@@ -12,6 +12,10 @@ export const trackEvent = (options: any, params: any) => {
     },
   });
   // @ts-ignore
+  window.mixpanel.track("Click localstorage - extra test", {
+    source: "test",
+  });
+  // @ts-ignore
   window.gtag("event", "click", {
     event_category: "button",
     event_label: "local-storage",
