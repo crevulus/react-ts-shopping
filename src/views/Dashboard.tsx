@@ -8,6 +8,7 @@ export const Dashboard = () => {
     <>
       <h2>Dashboard (Protected)</h2>
       <div>Authenticated as {token}</div>
+      <p>TEST</p>
     </>
   );
 };
